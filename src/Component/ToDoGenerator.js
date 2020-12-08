@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { v4 as uuidv4 } from 'uuid';
 class ToDoGenerator extends Component {
     constructor(props) {
         super(props);
@@ -9,7 +9,12 @@ class ToDoGenerator extends Component {
         
     }
     handleAddToDo=()=>{
-        console.log("add");
+        const newTodoItem = {
+            id: uuidv4(), 
+           text: this.state.toDoMsg,
+           done: false,
+        };
+        console.log(`${JSON.stringify(newTodoItem, null, 4)}`);
     }
     
     render() {
