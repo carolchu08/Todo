@@ -18,13 +18,13 @@ class ToDoItem extends Component {
         console.log(todo);
         console.log(todo.done);
         return (
-            <div> 
+            <div className='todoItem'> 
                <span>
                     <label onClick={()=>this.updateDoneStatus(todo.id)}> 
                             {todo.done?(<s>{todo.text}</s>) : todo.text} 
                     </label>
                     
-                    <button onClick={this.deleteItem}> x </button>
+                    <button className='button' onClick={this.deleteItem}> x </button>
                 </span>
             </div>
         );
