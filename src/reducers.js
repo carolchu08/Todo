@@ -4,7 +4,7 @@ import {CREATE_TODO,DELETE_TODO,UPDATE_DONE_STATUS} from './actionTypes';
 const toDoList = (state=[], action)=>{
 if(action.type===CREATE_TODO){
     return [...state, action.payload]
-}
+};
 if(action.type===DELETE_TODO){
     const updatedToDoList = [];
   state.forEach(item=> {
@@ -14,7 +14,16 @@ if(action.type===DELETE_TODO){
 
   });
   return updatedToDoList;
-    
+}
+if(action.type===UPDATE_DONE_STATUS){
+    state.forEach(item=> {
+        if(item.id!==action.payload.id){
+           return{...item, done:action.payload.done};
+        }
+        return {...item};
+  
+    });   
+
 }
 return state;
 }

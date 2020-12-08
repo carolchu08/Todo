@@ -6,7 +6,17 @@ export const createToDo=(newToDo)=>{
 export const deleteToDo=(uuid)=>{
     return {type:DELETE_TODO, payload: uuid};
 }
-export const updateDoneStatus=(uuid)=>{
-    return {type:UPDATE_DONE_STATUS, payload: uuid};
+export const changeToDoneStatus=(uuid)=>{
+    return {type:UPDATE_DONE_STATUS, payload: {
+        id:uuid,
+        done:true
+    }};
 }
+export const changeToNotDoneStatus=(uuid)=>{
+    return {type:UPDATE_DONE_STATUS, payload: {
+        id:uuid,
+        done:false
+    }};
+}
+
 

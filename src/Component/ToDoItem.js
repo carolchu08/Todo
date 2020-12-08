@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 class ToDoItem extends Component {
     changeDoneStatus=()=>{
         if(this.props.data.done){
-           console.log('not done');
+           this.props.changeToNotDoneStatus(this.props.data.id);
         }else{
-            console.log('done');
+            this.props.changeToDoneStatus(this.props.data.id);
         }
 
     }
@@ -19,8 +19,7 @@ class ToDoItem extends Component {
         return (
             <div>
                <span>
-                    <p> {done ? 'should be done' : 'not done'} </p>
-                    <p onClick={this.changeDoneStatus}> {text} {' '}
+                    <p onClick={this.changeDoneStatus}> {text}  {' '}
                     <button onClick={this.deleteItem}> x </button>
                     </p>
                 </span>

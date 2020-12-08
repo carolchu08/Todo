@@ -20,12 +20,15 @@ class ToDoGenerator extends Component {
             done: false,
         };
         this.props.createToDo(newToDoItem);
+        this.setState({
+            toDoMsg:''
+        });
     }
 
     render() {
         return (
             <div>
-                <input type="text" id="inputid" className="input_new_todo" placeholder="input a new todo here..." onChange={this.handleToDoMsgChange} />
+                <input type="text" value={this.state.toDoMsg} placeholder="input a new todo here..." onChange={this.handleToDoMsgChange} />
                 <button onClick={this.handleAddToDo}>Add</button>
             </div>
         );
