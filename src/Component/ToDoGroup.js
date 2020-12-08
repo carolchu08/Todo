@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ToDoItem from './ToDoItem';
+import ToDoItemContainer from '../Container/ToDoItemContainer';
 
 class ToDoGroup extends Component {
 
@@ -9,7 +9,7 @@ class ToDoGroup extends Component {
         return (
             <div>
                 {
-                   toDoList.map(item => <ToDoItem key={item.id} data={item} />)
+                   toDoList.map(item => <ToDoItemContainer key={item.id} data={item} />)
                 }
                 
             </div>

@@ -10,7 +10,7 @@ class ToDoItem extends Component {
 
     }
     deleteItem = () => {
-        console.log(`going to delete ${this.props.data.id}`);
+       this.props.deleteToDo(this.props.data.id)
     }
 
 
