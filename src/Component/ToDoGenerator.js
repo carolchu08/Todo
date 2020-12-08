@@ -8,6 +8,11 @@ class ToDoGenerator extends Component {
         }
         
     }
+    handleToDoMsgChange=(event)=>{
+        this.setState({
+            toDoMsg:event.target.value
+        });
+    }
     handleAddToDo=()=>{
         const newTodoItem = {
             id: uuidv4(), 
@@ -20,7 +25,7 @@ class ToDoGenerator extends Component {
     render() {
         return (
             <div>
-                <input type="text" id="inputid" className= "input_new_todo" placeholder="input a new todo here..."/>
+                <input type="text" id="inputid" className= "input_new_todo" placeholder="input a new todo here..." onChange={this.handleToDoMsgChange}/>
                 <button onClick={this.handleAddToDo}>Add</button>
             </div>
         );
