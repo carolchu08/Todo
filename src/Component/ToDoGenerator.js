@@ -14,12 +14,12 @@ class ToDoGenerator extends Component {
         });
     }
     handleAddToDo = () => {
-        const newTodoItem = {
+        const newToDoItem = {
             id: uuidv4(),
             text: this.state.toDoMsg,
             done: false,
         };
-        console.log(`${JSON.stringify(newTodoItem, null, 4)}`);
+        this.props.createToDo(newToDoItem);
     }
 
     render() {

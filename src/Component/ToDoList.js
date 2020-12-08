@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import ToDoGenerator from './ToDoGenerator';
+import ToDoGeneratorContainer from '../Container/ToDoGeneratorContainer';
+import ToDoGroupContainer from '../Container/ToDoGroupContainer';
 import ToDoGroup from './ToDoGroup';
 
 class ToDoList extends Component {
@@ -9,8 +10,9 @@ class ToDoList extends Component {
                 <h1>
                     ToDoList
                 </h1>
-                <ToDoGenerator />
-                <ToDoGroup />
+                <ToDoGroupContainer />
+                <ToDoGeneratorContainer />
+            
             </div>
         );
     }
