@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
+import '../Style/ToDoItemStyle.css';
 
 class ToDoItem extends Component {
-    changeDoneStatus=()=>{
-        if(this.props.data.done){
-           this.props.changeToNotDoneStatus(this.props.data.id);
-        }else{
-            this.props.changeToDoneStatus(this.props.data.id);
-        }
+    updateDoneStatus=(id)=>{
+       this.props.changeDoneStatus(id);
+       console.log("change");
 
     }
     deleteItem = () => {
@@ -15,13 +13,18 @@ class ToDoItem extends Component {
 
 
     render() {
-        const {text, done} = this.props.data;
+        const todo = this.props.data;
+        console.log("ck render");
+        console.log(todo);
+        console.log(todo.done);
         return (
-            <div>
+            <div> 
                <span>
-                    <p onClick={this.changeDoneStatus}> {text}  {' '}
+                    <label onClick={()=>this.updateDoneStatus(todo.id)}> 
+                            {todo.done?(<s>{todo.text}</s>) : todo.text} 
+                    </label>
+                    
                     <button onClick={this.deleteItem}> x </button>
-                    </p>
                 </span>
             </div>
         );

@@ -6,25 +6,25 @@ if(action.type===CREATE_TODO){
     return [...state, action.payload]
 };
 if(action.type===DELETE_TODO){
-    const updatedToDoList = [];
+    const updatedToDoList =[];
   state.forEach(item=> {
       if(item.id!==action.payload){
-          updatedToDoList.push(...item);
+          updatedToDoList.push({...item});
       }
 
   });
   return updatedToDoList;
 }
 if(action.type===UPDATE_DONE_STATUS){
-    state.forEach(item=> {
-        if(item.id!==action.payload.id){
-           return{...item, done:action.payload.done};
+    console.log(state);
+    return state.map(todo => {
+        if (todo.id === action.payload) {
+            todo.done = !todo.done
         }
-        return {...item};
-  
-    });   
-
+        return todo
+    })
 }
+
 return state;
 }
 export default combineReducers({toDoList});
