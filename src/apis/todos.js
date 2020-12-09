@@ -4,8 +4,8 @@ export const getTodoList = () =>{
     return api.get("/todos");
 };
 
-export const addNewTodo = (text) => {
-    return api.post("/todos",{text});
+export const addNewTodo = (text,category) => {
+    return api.post("/todos",{text,category});
 };
 
 export const deleteTodo = (id) =>{

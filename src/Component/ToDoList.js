@@ -11,7 +11,9 @@ class ToDoList extends Component {
                 <h1 className='todolist'>
                     ToDoList
                 </h1>
-                <ToDoGroupContainer />
+                <div className="todogroup">
+                    <ToDoGroupContainer />
+                </div>
                 <ToDoGeneratorContainer />
 
             </div>

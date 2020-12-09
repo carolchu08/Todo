@@ -1,6 +1,10 @@
-.todolist {
+.doneList{
+    margin: 0;
+    padding: 0;
+    font-family:Verdana, sans-serif;
+    height: 100%;
     text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
     background-color: rgb(208, 228, 161);
     border:5px dashed #76947b;
-    float: center;
+    text-align: center;
 }

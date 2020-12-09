@@ -1,11 +1,20 @@
 .todoItem {
     border-style: solid;
     border-width: 1px;
-    width: 200px;
-    margin: 0 auto 5px auto;
+    padding: 5px 0 5px 0;
+    width: 1000px;
+    margin: 0 auto 20px auto;
     text-align: left;
+    background-color: darkkhaki;
 }
 
 .button {
     float: right;
+    margin: 0 auto 5px auto;
+}
+
+.toDoItemLabel {
+    float: right;
+    margin: 0 5px 0 0;
+    text-shadow: 2px 2px #FF0000;
 }

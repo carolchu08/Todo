@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
-import { getTodoList } from '../apis/todos';
 import ToDoItemContainer from '../Container/ToDoItemContainer';
+import '../Style/DoneListStyle.css';
 
-
-class ToDoGroup extends Component {
-
-    componentDidMount = () => {
-        getTodoList().then(response => {
-            this.props.initTodoList(response.data);
-        })
-
-    }
-
+class DoneList extends Component {
     render() {
         const { toDoList } = this.props;
         return (
-            <div className='todoGroup'>
+            <div >
+                <h1 className="doneList">Done List</h1>
                 {
                     toDoList.map(item => <ToDoItemContainer key={item.id} data={item} />)
                 }
@@ -25,4 +17,4 @@ class ToDoGroup extends Component {
     }
 }
 
-export default ToDoGroup;
+export default DoneList;
