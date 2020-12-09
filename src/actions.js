@@ -1,4 +1,4 @@
-import { CREATE_TODO, DELETE_TODO, UPDATE_DONE_STATUS } from './actionTypes';
+import { ADD_TODO_LIST, CREATE_TODO, DELETE_TODO, UPDATE_DONE_STATUS } from './actionTypes';
 
 export const createToDo = (newToDo) => {
     return { type: CREATE_TODO, payload: newToDo };
@@ -12,5 +12,8 @@ export const changeDoneStatus = (id) => {
         payload: id
 
     };
+}
+export const initTodoList = (newToDo) => {
+    return { type: ADD_TODO_LIST, payload: newToDo };
 }
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { addNewTodo } from '../apis/todos';
 class ToDoGenerator extends Component {
     constructor(props) {
         super(props);
@@ -14,12 +15,9 @@ class ToDoGenerator extends Component {
         });
     }
     handleAddToDo = () => {
-        const newToDoItem = {
-            id: uuidv4(),
-            text: this.state.toDoMsg,
-            done: false,
-        };
-        this.props.createToDo(newToDoItem);
+        addNewTodo(this.state.toDoMsg).then(response=>{
+            this.props.createToDo(response.data);
+        })
         this.setState({
             toDoMsg: ''
         });

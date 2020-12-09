@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
+import { deleteTodo,updateDoneStatus } from '../apis/todos';
 import '../Style/ToDoItemStyle.css';
 
 class ToDoItem extends Component {
     updateDoneStatus = (id) => {
-        this.props.changeDoneStatus(id);
-        console.log("change");
+        updateDoneStatus(this.props.data.id).then(response=>{
+            this.props.changeDoneStatus(response.data.id);
+
+        })
 
     }
     deleteItem = () => {
-        this.props.deleteToDo(this.props.data.id)
+        deleteTodo(this.props.data.id).then(response=>{
+            this.props.deleteToDo(response.data.id)
+
+        })
     }
 
 

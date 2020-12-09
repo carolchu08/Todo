@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { CREATE_TODO, DELETE_TODO, UPDATE_DONE_STATUS } from './actionTypes';
+import { CREATE_TODO, DELETE_TODO, UPDATE_DONE_STATUS,ADD_TODO_LIST } from './actionTypes';
 
 const toDoList = (state = [], action) => {
     if (action.type === CREATE_TODO) {
@@ -24,7 +24,11 @@ const toDoList = (state = [], action) => {
 
         })
     }
-
+    if(action.type===ADD_TODO_LIST){
+        console.log("1");
+        return action.payload;
+    }
+    console.log("test");
     return state;
 }
 export default combineReducers({ toDoList });
