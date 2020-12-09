@@ -12,7 +12,7 @@ class ToDoList extends Component {
                 </h1>
                 <ToDoGroupContainer />
                 <ToDoGeneratorContainer />
-            
+
             </div>
         );
     }

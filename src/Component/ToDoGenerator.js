@@ -21,7 +21,7 @@ class ToDoGenerator extends Component {
         };
         this.props.createToDo(newToDoItem);
         this.setState({
-            toDoMsg:''
+            toDoMsg: ''
         });
     }
 

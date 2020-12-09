@@ -10,9 +10,9 @@ class ToDoGroup extends Component {
         return (
             <div className='todoGroup'>
                 {
-                   toDoList.map(item => <ToDoItemContainer key={item.id} data={item} />)
+                    toDoList.map(item => <ToDoItemContainer key={item.id} data={item} />)
                 }
-                
+
             </div>
         );
     }
