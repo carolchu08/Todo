@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
 import { addNewTodo } from '../apis/todos';
-import { Select } from 'antd';
+import { Select, Divider, Input } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 
 
 const { Option } = Select;
@@ -11,7 +12,10 @@ class ToDoGenerator extends Component {
         super(props);
         this.state = {
             toDoMsg: '',
-            category: []
+            category: [],
+            name: '',
+            toDotype: ["Food", "Drink", "Shopping", "Travelling", "Everyday", "Trasportation", "Country", "Other"]
+
         }
 
     }
@@ -35,12 +39,25 @@ class ToDoGenerator extends Component {
             category: value
         })
     }
+    onNameChange = event => {
+        this.setState({
+            name: event.target.value,
+        });
+    };
+    addItem = () => {
+        console.log('addItem');
+        const { toDotype, name } = this.state;
+        this.setState({
+            toDotype: [...toDotype,name],
+            name: '',
+        });
+    };
 
 
 
     render() {
         const children = [];
-        const toDotype = ["Food", "Drink", "Shopping", "Travelling", "Everyday", "Trasportation", "Country", "Other"];
+        const { toDotype } = this.state;
         for (let i = 0; i < toDotype.length; i++) {
             children.push(<Option key={toDotype[i]}>{toDotype[i]}</Option>);
 
@@ -57,6 +74,21 @@ class ToDoGenerator extends Component {
 
                         }}
                         placeholder="Please select the categories for your todo"
+                        dropdownRender={menu => (
+                            <div>
+                                {menu}
+                                <Divider style={{ margin: '4px 0' }} />
+                                <div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
+                                    <Input style={{ flex: 'auto' }} value={this.state.name} onChange={this.onNameChange} />
+                                    <a
+                                        style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
+                                        onClick={this.addItem}
+                                    >
+                                        <PlusOutlined /> Add item
+                                </a>
+                                </div>
+                            </div>
+                        )}
                         defaultValue={[]}
                         onChange={this.handleChange}
                     >
