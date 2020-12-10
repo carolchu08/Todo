@@ -31,15 +31,6 @@ class ToDoItem extends Component {
 
         })
     }
-    renderCategory = (category) => {
-        let categoryArray = [];
-        category.forEach(Item => {
-            categoryArray.push(<label className="toDoItemLabel"><Tag color={color[Item]}>{Item}</Tag></label>)
-        });
-        return categoryArray;
-
-    }
-
 
     render() {
         const todo = this.props.data;
@@ -50,7 +41,11 @@ class ToDoItem extends Component {
                         {todo.done ? (<s>{todo.text}</s>) : todo.text}
                     </label>
                     <DeleteTwoTone className='button' onClick={this.deleteItem} />
-                    {this.renderCategory(todo.category)}
+                 
+                    {
+                        todo.category.map(item => <label className="toDoItemLabel" key= {item}><Tag color={color[item]}>{item}</Tag></label>)
+                    }
+
 
 
                 </span>

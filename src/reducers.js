@@ -1,5 +1,6 @@
+import { TrademarkCircleTwoTone } from '@ant-design/icons';
 import { combineReducers } from 'redux';
-import { CREATE_TODO, DELETE_TODO, UPDATE_DONE_STATUS,ADD_TODO_LIST } from './actionTypes';
+import { CREATE_TODO, DELETE_TODO, DELETE_LABEL, UPDATE_DONE_STATUS, ADD_TODO_LIST, LABEL_LIST, CREATE_TODO_LABEL } from './actionTypes';
 
 const toDoList = (state = [], action) => {
     if (action.type === CREATE_TODO) {
@@ -24,11 +25,27 @@ const toDoList = (state = [], action) => {
 
         })
     }
-    if(action.type===ADD_TODO_LIST){
+    if (action.type === ADD_TODO_LIST) {
         console.log("1");
         return action.payload;
     }
-    console.log("test");
     return state;
 }
-export default combineReducers({ toDoList });
+const toDoLabelList = (state = [], action) => {
+    if (action.type === LABEL_LIST) {
+        return action.payload;
+    }
+    if (action.type === CREATE_TODO_LABEL) {
+        return [...state, action.payload];
+    }
+    if (action.type === DELETE_LABEL) {
+        console.log(action.payload);
+        console.log("delete",state.filter(item=>(item.labelID!==action.payload)));
+       
+        return state.filter(item=>(item.labelID!==action.payload));
+        
+
+    }
+    return state;
+}
+export default combineReducers({ toDoList, toDoLabelList });

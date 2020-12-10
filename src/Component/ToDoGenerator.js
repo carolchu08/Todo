@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import { addNewTodo } from '../apis/todos';
 import { Select, Divider, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
+import { getTodoLabelList, addNewTodoLabel,deleteTodoLabel } from '../apis/todoLabel';
 
 
 const { Option } = Select;
@@ -13,9 +14,8 @@ class ToDoGenerator extends Component {
         this.state = {
             toDoMsg: '',
             category: [],
-            name: '',
-            toDotype: ["Food", "Drink", "Shopping", "Travelling", "Everyday", "Trasportation", "Country", "Other"]
-
+            labelName: '',
+            color: 'pink'
         }
 
     }
@@ -41,27 +41,38 @@ class ToDoGenerator extends Component {
     }
     onNameChange = event => {
         this.setState({
-            name: event.target.value,
+            labelName: event.target.value,
         });
     };
     addItem = () => {
-        console.log('addItem');
-        const { toDotype, name } = this.state;
-        this.setState({
-            toDotype: [...toDotype,name],
-            name: '',
-        });
+        // console.log("add");
+        const label = {
+            labelName: this.state.labelName,
+            color: this.state.color
+        }
+        addNewTodoLabel(label).then(response => {
+            this.props.createToDoLabel(response.data)
+        })
     };
+    deleteItem = () => {
+        
+        const deleteLabel=this.props.toDoLabelList.filter(item=>(item.labelName===this.state.labelName))
+        deleteTodoLabel(deleteLabel[0].labelID).then(response => {
+            this.props.deleteTodoLabel(response.data.labelID)
+
+        })
+    };
+    componentDidMount = () => {
+        getTodoLabelList().then(response => {
+            this.props.initTodoLabelList(response.data);
+        })
+
+    }
 
 
 
     render() {
-        const children = [];
-        const { toDotype } = this.state;
-        for (let i = 0; i < toDotype.length; i++) {
-            children.push(<Option key={toDotype[i]}>{toDotype[i]}</Option>);
-
-        }
+        const { toDoLabelList } = this.props
 
         return (
             <div>
@@ -79,12 +90,18 @@ class ToDoGenerator extends Component {
                                 {menu}
                                 <Divider style={{ margin: '4px 0' }} />
                                 <div style={{ display: 'flex', flexWrap: 'nowrap', padding: 8 }}>
-                                    <Input style={{ flex: 'auto' }} value={this.state.name} onChange={this.onNameChange} />
-                                    <a
+                                    <Input style={{ flex: 'auto' }} value={this.state.labelName} onChange={this.onNameChange} />
+                                    <a href
                                         style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
                                         onClick={this.addItem}
                                     >
                                         <PlusOutlined /> Add item
+                                </a>
+                                <a href
+                                        style={{ flex: 'none', padding: '8px', display: 'block', cursor: 'pointer' }}
+                                        onClick={this.deleteItem}
+                                    >
+                                        <PlusOutlined /> delete item
                                 </a>
                                 </div>
                             </div>
@@ -92,7 +109,10 @@ class ToDoGenerator extends Component {
                         defaultValue={[]}
                         onChange={this.handleChange}
                     >
-                        {children}
+                        {
+                            toDoLabelList.map(item => <Option key={item.labelID}>{item.labelName}</Option>)
+                        }
+                  
                     </Select>
                     <br />
                 </>
