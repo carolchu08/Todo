@@ -16,13 +16,15 @@ const color = {
 
 }
 class ToDoItem extends Component {
-    updateDoneStatus = (id) => {
-        updateDoneStatus(this.props.data.id).then(response => {
-            this.props.changeDoneStatus(response.data.id);
 
+
+    updateDoneStatus = (id, done) => {
+        updateDoneStatus(id, !done).then(response => {
+            this.props.changeDoneStatus(response.data.id, response.data.done)
         })
 
     }
+
     deleteItem = () => {
         deleteTodo(this.props.data.id).then(response => {
             this.props.deleteToDo(response.data.id)
@@ -44,7 +46,7 @@ class ToDoItem extends Component {
         return (
             <div className='todoItem'>
                 <span>
-                    <label onClick={() => this.updateDoneStatus(todo.id)}>
+                    <label onClick={() => this.updateDoneStatus(todo.id, todo.done)}>
                         {todo.done ? (<s>{todo.text}</s>) : todo.text}
                     </label>
                     <DeleteTwoTone className='button' onClick={this.deleteItem} />
