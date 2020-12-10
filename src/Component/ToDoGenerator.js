@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'antd';
-import { addNewTodo } from '../apis/todos';
+import { addNewTodo} from '../apis/todos';
 import { Select, Divider, Input } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { getTodoLabelList, addNewTodoLabel,deleteTodoLabel } from '../apis/todoLabel';
@@ -55,7 +55,6 @@ class ToDoGenerator extends Component {
         })
     };
     deleteItem = () => {
-        
         const deleteLabel=this.props.toDoLabelList.filter(item=>(item.labelName===this.state.labelName))
         deleteTodoLabel(deleteLabel[0].labelID).then(response => {
             this.props.deleteTodoLabel(response.data.labelID)
