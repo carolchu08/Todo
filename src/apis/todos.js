@@ -4,15 +4,15 @@ export const getTodoList = () =>{
     return api.get("/todos");
 };
 
-export const addNewTodo = (text,category) => {
-    return api.post("/todos",{text,category});
+export const addNewTodo = (text,todoLabels) => {
+    return api.post("/todos",{text,todoLabels});
 };
 
 export const deleteTodo = (id) =>{
     return api.delete("/todos/"+id);
 }
 
-export const updateDoneStatus = (id,done) =>
+export const updateDoneStatus = (todo) =>
 {
-    return api.put("/todos/"+id,{done})
+    return api.put("/todos/"+todo.id,todo)
 }

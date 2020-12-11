@@ -18,32 +18,41 @@ const color = {
 class ToDoItem extends Component {
 
 
-    updateDoneStatus = (id, done) => {
-        updateDoneStatus(id, !done).then(response => {
-            this.props.changeDoneStatus(response.data.id, response.data.done)
+    
+    updateDoneStatus = (todo) => {
+        const updatedDoneTodo ={
+            ...todo,
+            done: !todo.done
+            };
+        updateDoneStatus(updatedDoneTodo).then(response => {
+            this.props.changeDoneStatus(response.data.id)
         })
 
     }
 
     deleteItem = () => {
         deleteTodo(this.props.data.id).then(response => {
-            this.props.deleteToDo(response.data.id)
+            this.props.deleteToDo(this.props.data.id)
 
         })
     }
 
     render() {
         const todo = this.props.data;
+        console.log(todo);
+        console.log(todo.todoLabels) ;
         return (
             <div className='todoItem'>
                 <span>
-                    <label onClick={() => this.updateDoneStatus(todo.id, todo.done)}>
+                    <label onClick={() => this.updateDoneStatus(todo)}>
                         {todo.done ? (<s>{todo.text}</s>) : todo.text}
                     </label>
                     <DeleteTwoTone className='button' onClick={this.deleteItem} />
                  
-                    {
-                        todo.category.map(item => <label className="toDoItemLabel" key= {item}><Tag color={color[item]}>{item}</Tag></label>)
+                    { 
+                   
+                     todo.todoLabels && todo.todoLabels.length>0?
+                        todo.todoLabels.map(item => <label className="toDoItemLabel" key= {item.id}><Tag color={color[item.labelName]}>{item.labelName}</Tag></label>):[]
                     }
 
 

@@ -12,8 +12,8 @@ class ToDoGenerator extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            toDoMsg: '',
-            category: [],
+            text: '',
+            todoLabels: [],
             labelName: '',
             color: 'pink'
         }
@@ -21,22 +21,25 @@ class ToDoGenerator extends Component {
     }
     handleToDoMsgChange = (event) => {
         this.setState({
-            toDoMsg: event.target.value,
+            text: event.target.value,
 
         });
     }
     handleAddToDo = () => {
-        addNewTodo(this.state.toDoMsg, this.state.category).then(response => {
+       
+        addNewTodo(this.state.text, this.state.todoLabels).then(response => {
+
             this.props.createToDo(response.data);
         })
         this.setState({
-            toDoMsg: '',
-            category: []
+            text: '',
+            todoLabels: []
         });
     }
     handleChange = (value) => {
+        const label= this.props.toDoLabelList.filter(item=>value.includes(item.labelID))
         this.setState({
-            category: value
+            todoLabels:label
         })
     }
     onNameChange = event => {
@@ -57,7 +60,8 @@ class ToDoGenerator extends Component {
     deleteItem = () => {
         const deleteLabel=this.props.toDoLabelList.filter(item=>(item.labelName===this.state.labelName))
         deleteTodoLabel(deleteLabel[0].labelID).then(response => {
-            this.props.deleteTodoLabel(response.data.labelID)
+            console.log(deleteLabel[0].labelID);
+            this.props.deleteTodoLabel(deleteLabel[0].labelID)
 
         })
     };
@@ -115,8 +119,8 @@ class ToDoGenerator extends Component {
                     </Select>
                     <br />
                 </>
-                <input type="text" value={this.state.toDoMsg} placeholder="input a new todo here..." onChange={this.handleToDoMsgChange} />
-                <Button type="primary" onClick={this.handleAddToDo} disabled={this.state.toDoMsg === ''} shape="round">Add</Button>
+                <input type="text" value={this.state.text} placeholder="input a new todo here..." onChange={this.handleToDoMsgChange} />
+                <Button type="primary" onClick={this.handleAddToDo} disabled={this.state.text === ''} shape="round">Add</Button>
 
             </div>
         );

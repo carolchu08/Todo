@@ -1,4 +1,3 @@
-import { TrademarkCircleTwoTone } from '@ant-design/icons';
 import { combineReducers } from 'redux';
 import { CREATE_TODO, DELETE_TODO, DELETE_LABEL, UPDATE_DONE_STATUS, ADD_TODO_LIST, LABEL_LIST, CREATE_TODO_LABEL } from './actionTypes';
 

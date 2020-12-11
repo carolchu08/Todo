@@ -7,11 +7,11 @@ export const addNewTodoLabel = (label) => {
     return api.post("/todoLabel",label);
 };
 
-export const deleteTodoLabel = (id) =>{
-    return api.delete("/todoLabel/"+id);
+export const deleteTodoLabel = (labelID) =>{
+    return api.delete("/todoLabel/"+labelID);
 }
 
-export const updateTodoLabelColor = (id,color) =>
+export const updateTodoLabelColor = (labelID,color) =>
 {
-    return api.put("/todoLabel/"+id,{color})
+    return api.put("/todoLabel/"+labelID,{color})
 }
